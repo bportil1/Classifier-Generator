@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Classifier-Generator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+49a0eac3f9c7ddf08db97cb973b2952673d63240")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f78e95da963bf845492d59538cc7fe85d7b76f6d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Classifier-Generator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Classifier-Generator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
