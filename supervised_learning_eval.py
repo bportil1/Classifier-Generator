@@ -31,47 +31,29 @@ def binarize_data(data, data_labels):
     return bin_data, num_labels
 
 def classifier_name_expand(alg):
-    if alg ==  'knn':
-        alg = 'K-Nearest Neighbors'
-    elif alg == 'lsvc':
-        alg = 'Linear SVC'
-    elif alg == 'svc':
-        alg = 'SVC'
-    elif alg == 'gp':
-        alg = 'Gaussian Processes'
-    elif alg == 'dt':
-        alg = 'Decision Tree'
-    elif alg == 'rf':
-        alg = 'Random Forest'
-    elif alg == 'ada':
-        alg = 'AdaBoost'
-    elif alg == 'gnb':
-        alg = 'Gaussian Naive Bayes'
-    elif alg == 'mnb':
-        alg = 'Multinomial Naive Bayes'
-    elif alg == 'compnb':
-        alg = 'Complement Naive Bayes'
-    elif alg == 'bnb':
-        alg = 'Bernoulli Naive Bayes'
-    elif alg == 'qda':
-        alg = 'Quadratic Discriminant Analysis'
-    elif alg == 'lda':
-        alg = 'Linear Discriminant Analysis'
-    elif alg == 'mlp':
-        alg = 'Multilayer Perceptron' 
-    elif  alg == 'ridge':
-        alg = 'Ridge'
-    elif alg == 'pa':
-        alg = 'Passive Aggressive'
-    elif alg == 'sgd':
-        alg = 'SGD'
-    elif alg == 'hgbc':
-        alg = 'Histogram Gradient Boosting Classifier'
-    elif alg == 'etc':
-        alg = 'Extra Trees Classifier'
-    elif alg == 'if':
-        alg = 'Isolation Forest'
-    return alg
+    classifier_name_dict = {
+        'knn':'K-Nearest Neighbors',
+        'lsvc': 'Linear SVC',
+        'svc': 'SVC',
+        'gp': 'Gaussian Processes',
+        'dt': 'Decision Tree',
+        'rf': 'Random Forest',
+        'ada': 'AdaBoost',
+        'gnb': 'Gaussian Naive Bayes',
+        'mnb': 'Multinomial Naive Bayes',
+        'compnb': 'Complement Naive Bayes',
+        'bnb': 'Bernoulli Naive Bayes',
+        'qda': 'Quadratic Discriminant Analysis',
+        'lda': 'Linear Discriminant Analysis',
+        'mlp': 'Multilayer Perceptron',
+        'ridge': 'Ridge',
+        'pa': 'Passive Aggressive',
+        'sgd': 'SGD',
+        'hgbc': 'Histogram Gradient Boosting Classifier',
+        'etc': 'Extra Trees Classifier',
+        'if': 'Isolation Forest'
+    }
+    return classifier_name_dict[alg]
 
 sem = True
 
@@ -116,14 +98,13 @@ def supervised_methods_evaluation(alg, model, X, y, X_test, y_test,
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
     output_file = open(output_file_path, "w")
-    output_file2 = open(summary_file_path, "a")
+    #output_file2 = open(summary_file_path, "a")
     output_file3 = open(roc_data_path, "w")
     
     output_file.write("Classifier Name: " + classifier_name_expand(alg))
-    output_file2.write(classifier_name_expand(alg) + ", ")
 
     output_file.write("\nCV Time: " + str(cv_time) + ", ")
-    
+
     output_file.write("\nFitting Time: " + str(fitting_time) + ", ")
 
     output_file.write("\nPrediction Time: " + str(prediction_time) + ", ")
@@ -134,28 +115,20 @@ def supervised_methods_evaluation(alg, model, X, y, X_test, y_test,
     output_file.write("\nAccuracy Scores During Training: " + str(acc_scores))
     output_file.write("\nAccuracy Scores Mean During Training: " + str(acc_scores.mean()))
     output_file.write("\nAccuracy Scores Standard Deviation During Training: " + str(acc_scores.std()))
-    
-    output_file2.write(str(accScore) + ", ")
-    output_file2.write(str(acc_scores) + ", ")
-    output_file2.write(str(acc_scores.mean()) + ", ")
-    output_file2.write(str(acc_scores.std()) + ", ")
 
     preScore = sk.metrics.precision_score(y_test, y_pred, average="weighted", labels = data_labels)
     output_file.write("\nPrecision Score: " + str(preScore))
-    output_file2.write(str(preScore) + ", ")
     
     recScore = sk.metrics.recall_score(y_test, y_pred, average="weighted", labels = data_labels)
-    output_file.write("\nRecall Score: " + str(recScore))
-    output_file2.write(str(recScore) + ", ")                  
-                      
+    output_file.write("\nRecall Score: " + str(recScore))               
+
     f1Score = sk.metrics.f1_score(y_test, y_pred, average="weighted", labels = data_labels)
     output_file.write("\nF1 Score: " + str(f1Score))
-    output_file2.write(str(f1Score) + ", ")                       
-
+                     
     f2Score = sk.metrics.fbeta_score(y_test, y_pred, beta = 1.2, average="weighted", labels = data_labels)
-    output_file.write("\nF2 Score: " + str(f2Score))
-    output_file2.write(str(f2Score) + ", ")                       
+    output_file.write("\nF2 Score: " + str(f2Score))                     
     
+
     while sem == False:
         pass
     
@@ -189,8 +162,7 @@ def supervised_methods_evaluation(alg, model, X, y, X_test, y_test,
         plt.savefig(output_path + alg + "_ras.png")
         plt.close()
 
-        output_file.write("\nROC AUC Score: " + str(ras))
-        output_file2.write(str(ras)+ ", ")
+        output_file.write("\nROC AUC Score: " + str(ras))     
         
         data = pd.DataFrame({ 'fpr' : fpr , 'tpr' : tpr, 'thrsh' : thrsh  })
         data.to_csv(roc_data_path, index = False)
@@ -206,35 +178,124 @@ def supervised_methods_evaluation(alg, model, X, y, X_test, y_test,
     plt.close()
     
     sem = True
-   
+
     mcc = sk.metrics.matthews_corrcoef(y_test, y_pred)
     output_file.write("\nMatthews Correlation Coefficient: " + str(mcc))
-    output_file2.write(str(mcc) + ", ")
 
     ck = sk.metrics.cohen_kappa_score(y_test, y_pred)
     output_file.write("\nCohen's kappa: " + str(ck))
-    output_file2.write(str(ck) + ", ")
 
     jaccard = sk.metrics.jaccard_score(y_test, y_pred, average="weighted", labels = data_labels)
     output_file.write("\nJaccard Score: " + str(jaccard))
-    output_file2.write(str(jaccard) + ", ")
     
     hammingl = sk.metrics.hamming_loss(y_test, y_pred)
     output_file.write("\nHamming Loss: " + str(hammingl))
-    output_file2.write(str(hammingl) + ", ")
 
     z1l = sk.metrics.zero_one_loss(y_test, y_pred)
     output_file.write("\nZero-one Loss: " + str(z1l))
-    output_file2.write(str(z1l)+ "\n")
 
     classifier_model = output_path + alg + "_model.sav"
     pickle.dump(model, open(classifier_model, 'wb'))
 
+    output_columns = [ 'Algorithm', 'Training Time', 'Fitting Time', 
+                       'Prediction Time', 'Accuracy Score(Test Set)',
+                       'Accuracy Scores(Training)', 'Mean Accuracy Score(Training)',
+                       'Accuracy Score StDev(Training)', 'Precision Score',
+                       'Recall Score', 'F1 Score', 'F2 Score',
+                       'ROC AUC Score', 'Matthews CC', 'Cohens Kappa',
+                       'Jaccard Score', 'Hamming Loss', 'Zero-one Loss', 
+                       'Optimizing Tuple', 'Optimization Time'] 
+
+
     if clf_type == 'optimized':
         output_file.write("\nOptimizing Tuple: " + str(optimizing_tuple))
-        output_file2.write(str(optimizing_tuple) + ", ")
         output_file.write("\nOptimization Time: " + str(optimization_time))
-        output_file2.write(str(optimization_time) + ", ")
+        if class_type == 'binary':
+            output_df = pd.DataFrame({'Algorithm': classifier_name_expand(alg),
+                                      'Training Time': cv_time,
+                                      'Fitting Time': fitting_time,
+                                      'Prediction Time': prediction_time,
+                                      'Accuracy Score(Test Set)': accScore,
+                                      'Accuracy Scores(Training)': " ".join(map(str, acc_scores)),
+                                      'Mean Accuracy Score(Training)': acc_scores.mean(),
+                                      'Accuracy Score StDev(Training)': acc_scores.std(),
+                                      'Precision Score': preScore,
+                                      'Recall Score': recScore,
+                                      'F1 Score': f1Score,
+                                      'F2 Score': f2Score,
+                                      'ROC AUC Score': ras, 
+                                      'Matthews CC': mcc,
+                                      'Cohens Kappa': ck,
+                                      'Jaccard Score': jaccard,
+                                      'Hamming Loss': hammingl,
+                                      'Zero-one Loss': z1l,
+                                      'Optimizing Tuple': " ".join(map(str, optimizing_tuple)), 
+                                      'Optimization Time': optimization_time
+            }, columns = output_columns, index=[0])
+        else:
+            output_df = pd.DataFrame({'Algorithm': classifier_name_expand(alg),
+                                      'Training Time': cv_time,
+                                      'Fitting Time': fitting_time,
+                                      'Prediction Time': prediction_time,
+                                      'Accuracy Score(Test Set)': accScore,
+                                      'Accuracy Scores(Training)': " ".join(map(str, acc_scores)),
+                                      'Mean Accuracy Score(Training)': acc_scores.mean(),
+                                      'Accuracy Score StDev(Training)': acc_scores.std(),
+                                      'Precision Score': preScore,
+                                      'Recall Score': recScore,
+                                      'F1 Score': f1Score,
+                                      'F2 Score': f2Score,
+                                      'Matthews CC': mcc,
+                                      'Cohens Kappa': ck,
+                                      'Jaccard Score': jaccard,
+                                      'Hamming Loss': hammingl,
+                                      'Zero-one Loss': z1l,
+                                      'Optimizing Tuple': " ".join(map(str, optimizing_tuple)), 
+                                      'Optimization Time': optimization_time
+            }, columns = output_columns, index=[0])   
+
+    else:
+        if class_type == 'binary':
+            output_df = pd.DataFrame({'Algorithm': classifier_name_expand(alg),
+                                    'Training Time': cv_time,
+                                    'Fitting Time': fitting_time,
+                                    'Prediction Time': prediction_time,
+                                    'Accuracy Score(Test Set)': accScore,
+                                    'Accuracy Scores(Training)': " ".join(map(str, acc_scores)),
+                                    'Mean Accuracy Score(Training)': acc_scores.mean(),
+                                    'Accuracy Score StDev(Training)': acc_scores.std(),
+                                    'Precision Score': preScore,
+                                    'Recall Score': recScore,
+                                    'F1 Score': f1Score,
+                                    'F2 Score': f2Score,
+                                    'ROC AUC Score': ras, 
+                                    'Matthews CC': mcc,
+                                    'Cohens Kappa': ck,
+                                    'Jaccard Score': jaccard,
+                                    'Hamming Loss': hammingl,
+                                    'Zero-one Loss': z1l
+            }, columns = output_columns, index=[0])
+        else:
+            output_df = pd.DataFrame({'Algorithm': classifier_name_expand(alg),
+                                    'Training Time': cv_time,
+                                    'Fitting Time': fitting_time,
+                                    'Prediction Time': prediction_time,
+                                    'Accuracy Score(Test Set)': accScore,
+                                    'Accuracy Scores(Training)': " ".join(map(str, acc_scores)),
+                                    'Mean Accuracy Score(Training)': acc_scores.mean(),
+                                    'Accuracy Score StDev(Training)': acc_scores.std(),
+                                    'Precision Score': preScore,
+                                    'Recall Score': recScore,
+                                    'F1 Score': f1Score,
+                                    'F2 Score': f2Score,
+                                    'Matthews CC': mcc,
+                                    'Cohens Kappa': ck,
+                                    'Jaccard Score': jaccard,
+                                    'Hamming Loss': hammingl,
+                                    'Zero-one Loss': z1l
+            }, columns = output_columns, index=[0])
+            
+    output_df.to_csv(summary_file_path)
 
     return output_path, model
 
