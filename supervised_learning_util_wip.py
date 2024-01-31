@@ -97,10 +97,11 @@ class dataset():
         print("Finished downsizing data")
 
 class learning():
-    def __init__(self, data_obj, arg_type, selected_args=[]):
+    def __init__(self, data_obj, arg_type, selected_algs=[]):
         self.data_obj = data_obj
         self.arg_type = arg_type
-        self.selected_algs = selected_args
+        self.selected_algs = selected_algs
+        self.summary_cols = self.get_summary_column_labels(self.data_obj.classif_type, self.arg_type)
 
     def get_bin_classif_algs(self):
 
@@ -114,6 +115,44 @@ class learning():
         self.selected_algs = ['gnb', 'bnb', 'lda', 'lsvc', 'qda', 'ridge',
                               'rf', 'hgbc', 'mlp' ] #, 'knn']
         
+    def get_summary_column_labels(self, classif_type, arg_type):
+        summary_cols_coll = { ('binary', 'optimized'): [ 'Algorithm', 'Training Time', 'Fitting Time', 
+                       'Prediction Time', 'Accuracy Score(Test Set)',
+                       'Accuracy Scores(Training)', 'Mean Accuracy Score(Training)',
+                       'Accuracy Score StDev(Training)', 'Precision Score',
+                       'Recall Score', 'F1 Score', 'F2 Score',
+                       'ROC AUC Score', 'Matthews CC', 'Cohens Kappa',
+                       'Jaccard Score', 'Hamming Loss', 'Zero-one Loss', 
+                       'Optimizing Tuple', 'Optimization Time'], 
+                       
+                       ('binary', 'plain'): [ 'Algorithm', 'Training Time', 'Fitting Time', 
+                       'Prediction Time', 'Accuracy Score(Test Set)',
+                       'Accuracy Scores(Training)', 'Mean Accuracy Score(Training)',
+                       'Accuracy Score StDev(Training)', 'Precision Score',
+                       'Recall Score', 'F1 Score', 'F2 Score',
+                       'ROC AUC Score', 'Matthews CC', 'Cohens Kappa',
+                       'Jaccard Score', 'Hamming Loss', 'Zero-one Loss'],
+                       
+                       ('multiclass', 'optimized'): [ 'Algorithm', 'Training Time', 'Fitting Time', 
+                       'Prediction Time', 'Accuracy Score(Test Set)',
+                       'Accuracy Scores(Training)', 'Mean Accuracy Score(Training)',
+                       'Accuracy Score StDev(Training)', 'Precision Score',
+                       'Recall Score', 'F1 Score', 'F2 Score',
+                       'Matthews CC', 'Cohens Kappa',
+                       'Jaccard Score', 'Hamming Loss', 'Zero-one Loss', 
+                       'Optimizing Tuple', 'Optimization Time'],
+
+                       ('multiclass', 'plain'): [ 'Algorithm', 'Training Time', 'Fitting Time', 
+                       'Prediction Time', 'Accuracy Score(Test Set)',
+                       'Accuracy Scores(Training)', 'Mean Accuracy Score(Training)',
+                       'Accuracy Score StDev(Training)', 'Precision Score',
+                       'Recall Score', 'F1 Score', 'F2 Score',
+                       'Matthews CC', 'Cohens Kappa',
+                       'Jaccard Score', 'Hamming Loss', 'Zero-one Loss'] 
+                       }
+        
+        self.summary_cols = summary_cols_coll[(classif_type, arg_type)]
+        
     def supervised_learning(self):
         if self.data_obj.classif_type == 'binary' and self.selected_algs == []:
             self.get_bin_classif_algs()
@@ -123,10 +162,11 @@ class learning():
         for alg in self.selected_algs:
             self.classif_funcs_caller(alg)
 
-        group_summary_by_alg(self.selected_algs, self.data_obj.data_path, self.arg_type)
+        group_summary_by_alg(self.selected_algs, self.data_obj.data_path, self.arg_type, self.data_obj.classif_type, self.summary_cols)
 
         if self.data_obj.classif_type == 'binary':
-            group_plotter_by_alg(self.selected_algs, self.data_obj.data_path, self.arg_type)
+
+            group_roc_plotter_by_alg(self.selected_algs, self.data_obj.data_path, self.arg_type)
     
         print("Learning step completed")
     
@@ -191,6 +231,7 @@ def main():
     learning_obj.supervised_learning()
 
     ### run on multiclass data  
+
     data = dataset()
     data.select_data()
     data.load_data()
@@ -201,7 +242,6 @@ def main():
     
     learning_obj = learning(data, 'optimized', ['hgbc',  'qda', 'ridge', 'lda'])
     learning_obj.supervised_learning()
-    
     
     return 0
 

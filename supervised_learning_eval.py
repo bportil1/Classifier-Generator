@@ -19,6 +19,9 @@ from datetime import timedelta
 from matplotlib.offsetbox import AnchoredText
 import pickle
 
+import warnings
+warnings.filterwarnings("ignore")
+
 def binarize_data(data, data_labels):
     idx = 0
     num_labels = []
@@ -197,24 +200,16 @@ def supervised_methods_evaluation(alg, model, X, y, X_test, y_test,
     classifier_model = output_path + alg + "_model.sav"
     pickle.dump(model, open(classifier_model, 'wb'))
 
-    output_columns = [ 'Algorithm', 'Training Time', 'Fitting Time', 
-                       'Prediction Time', 'Accuracy Score(Test Set)',
-                       'Accuracy Scores(Training)', 'Mean Accuracy Score(Training)',
-                       'Accuracy Score StDev(Training)', 'Precision Score',
-                       'Recall Score', 'F1 Score', 'F2 Score',
-                       'ROC AUC Score', 'Matthews CC', 'Cohens Kappa',
-                       'Jaccard Score', 'Hamming Loss', 'Zero-one Loss', 
-                       'Optimizing Tuple', 'Optimization Time'] 
-
+    #output_columns = 
 
     if clf_type == 'optimized':
         output_file.write("\nOptimizing Tuple: " + str(optimizing_tuple))
         output_file.write("\nOptimization Time: " + str(optimization_time))
         if class_type == 'binary':
             output_df = pd.DataFrame({'Algorithm': classifier_name_expand(alg),
-                                      'Training Time': cv_time,
-                                      'Fitting Time': fitting_time,
-                                      'Prediction Time': prediction_time,
+                                      'Training Time': str(cv_time),
+                                      'Fitting Time': str(fitting_time),
+                                      'Prediction Time': str(prediction_time),
                                       'Accuracy Score(Test Set)': accScore,
                                       'Accuracy Scores(Training)': " ".join(map(str, acc_scores)),
                                       'Mean Accuracy Score(Training)': acc_scores.mean(),
@@ -230,13 +225,13 @@ def supervised_methods_evaluation(alg, model, X, y, X_test, y_test,
                                       'Hamming Loss': hammingl,
                                       'Zero-one Loss': z1l,
                                       'Optimizing Tuple': " ".join(map(str, optimizing_tuple)), 
-                                      'Optimization Time': optimization_time
-            }, columns = output_columns, index=[0])
+                                      'Optimization Time': str(optimization_time)
+            } ,index=[0])
         else:
             output_df = pd.DataFrame({'Algorithm': classifier_name_expand(alg),
-                                      'Training Time': cv_time,
-                                      'Fitting Time': fitting_time,
-                                      'Prediction Time': prediction_time,
+                                      'Training Time': str(cv_time),
+                                      'Fitting Time': str(fitting_time),
+                                      'Prediction Time': str(prediction_time),
                                       'Accuracy Score(Test Set)': accScore,
                                       'Accuracy Scores(Training)': " ".join(map(str, acc_scores)),
                                       'Mean Accuracy Score(Training)': acc_scores.mean(),
@@ -251,15 +246,15 @@ def supervised_methods_evaluation(alg, model, X, y, X_test, y_test,
                                       'Hamming Loss': hammingl,
                                       'Zero-one Loss': z1l,
                                       'Optimizing Tuple': " ".join(map(str, optimizing_tuple)), 
-                                      'Optimization Time': optimization_time
-            }, columns = output_columns, index=[0])   
+                                      'Optimization Time': str(optimization_time)
+            } ,index=[0])   
 
     else:
         if class_type == 'binary':
             output_df = pd.DataFrame({'Algorithm': classifier_name_expand(alg),
-                                    'Training Time': cv_time,
-                                    'Fitting Time': fitting_time,
-                                    'Prediction Time': prediction_time,
+                                    'Training Time': str(cv_time),
+                                    'Fitting Time': str(fitting_time),
+                                    'Prediction Time': str(prediction_time),
                                     'Accuracy Score(Test Set)': accScore,
                                     'Accuracy Scores(Training)': " ".join(map(str, acc_scores)),
                                     'Mean Accuracy Score(Training)': acc_scores.mean(),
@@ -274,12 +269,12 @@ def supervised_methods_evaluation(alg, model, X, y, X_test, y_test,
                                     'Jaccard Score': jaccard,
                                     'Hamming Loss': hammingl,
                                     'Zero-one Loss': z1l
-            }, columns = output_columns, index=[0])
+            } ,index=[0])
         else:
             output_df = pd.DataFrame({'Algorithm': classifier_name_expand(alg),
-                                    'Training Time': cv_time,
-                                    'Fitting Time': fitting_time,
-                                    'Prediction Time': prediction_time,
+                                    'Training Time': str(cv_time),
+                                    'Fitting Time': str(fitting_time),
+                                    'Prediction Time': str(prediction_time),
                                     'Accuracy Score(Test Set)': accScore,
                                     'Accuracy Scores(Training)': " ".join(map(str, acc_scores)),
                                     'Mean Accuracy Score(Training)': acc_scores.mean(),
@@ -293,14 +288,13 @@ def supervised_methods_evaluation(alg, model, X, y, X_test, y_test,
                                     'Jaccard Score': jaccard,
                                     'Hamming Loss': hammingl,
                                     'Zero-one Loss': z1l
-            }, columns = output_columns, index=[0])
+            } ,index=[0])
             
-    output_df.to_csv(summary_file_path)
+    output_df.to_csv(summary_file_path, index = False)
 
     return output_path, model
 
-def group_plotter_by_alg(superv_alg_name, output_path, clf_type):
-    print(output_path)
+def group_roc_plotter_by_alg(superv_alg_name, output_path, clf_type):
     plt.clf()
     plt.title("ROC Curves by Classifier")
     plt.xlabel("False Positive Rate")
@@ -332,30 +326,45 @@ def group_plotter_by_alg(superv_alg_name, output_path, clf_type):
         
     return 0
 
-def group_summary_by_alg(superv_alg_name, output_path, clf_type):
+def group_summary_by_alg(superv_alg_name, output_path, clf_type, classif_type, output_columns):
+    compiled_df = pd.DataFrame(columns=output_columns)
 
-    if clf_type == 'optimized':
-        file_out_path = file_inp = output_path + "/supervised_methods_evaluation_results/optimized_summary.csv" 
-        output_file = open(file_out_path, "a")
-        output_file.write("Optimized Run Summary")
-        for alg in superv_alg_name:
-            file_inp = output_path + "/supervised_methods_evaluation_results/" + str(alg) + \
-                                        '/optimized_results/' + str(alg) + '_summary_optimized.csv'  
-            data = pd.read_csv(file_inp, header=None)
-            output_file.write("\nAlgorithm: " + classifier_name_expand(alg) + ", Accuracy: " + str(data[1][0]))
-            
-    elif clf_type == 'plain':
-        file_out_path = file_inp = output_path + "/supervised_methods_evaluation_results/plain_summary.csv" 
-        output_file = open(file_out_path, "a")
-        output_file.write("Plain Run Summary")
-        for alg in superv_alg_name:
-            file_inp = output_path + "/supervised_methods_evaluation_results/" + str(alg) + \
-                                        '/plain_results/' + str(alg) + '_summary_plain.csv'  
-            data = pd.read_csv(file_inp, header=None)
-            output_file.write("\nAlgorithm: " + classifier_name_expand(alg) + ", Accuracy: " + str(data[1][0]))
+    if classif_type == 'binary':
+        if clf_type == 'optimized':
+            file_out_path = output_path + "/supervised_methods_evaluation_results/optimized_summary.csv" 
+            for alg in superv_alg_name:
+                file_inp = output_path + "/supervised_methods_evaluation_results/" + str(alg) + \
+                                            '/optimized_results/' + str(alg) + '_summary_optimized.csv'  
+                data = pd.read_csv(file_inp, usecols=output_columns, index_col=False)               
+                compiled_df = compiled_df.append(data)
+                
+        elif clf_type == 'plain':
+            file_out_path = output_path + "/supervised_methods_evaluation_results/plain_summary.csv" 
+            for alg in superv_alg_name:
+                file_inp = output_path + "/supervised_methods_evaluation_results/" + str(alg) + \
+                                            '/plain_results/' + str(alg) + '_summary_plain.csv'  
+                data = pd.read_csv(file_inp, index_col=False)               
+                compiled_df = compiled_df.append(data)
 
-    output_file.close()
+    elif classif_type == 'multiclass':
+        if clf_type == 'optimized':
+            file_out_path = output_path + "/supervised_methods_evaluation_results/optimized_summary.csv" 
+            for alg in superv_alg_name:
+                file_inp = output_path + "/supervised_methods_evaluation_results/" + str(alg) + \
+                                            '/optimized_results/' + str(alg) + '_summary_optimized.csv'  
+                data = pd.read_csv(file_inp, index_col=False)
+                compiled_df = compiled_df.append(data)
+                
+        elif clf_type == 'plain':
+            file_out_path = output_path + "/supervised_methods_evaluation_results/plain_summary.csv" 
+            for alg in superv_alg_name:
+                file_inp = output_path + "/supervised_methods_evaluation_results/" + str(alg) + \
+                                            '/plain_results/' + str(alg) + '_summary_plain.csv'  
+                data = pd.read_csv(file_inp, index_col=False)
+                compiled_df = compiled_df.append(data)
+
+    compiled_df.to_csv(file_out_path, index=False)
+ 
     return 0
-
 
     
