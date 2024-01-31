@@ -200,8 +200,6 @@ def supervised_methods_evaluation(alg, model, X, y, X_test, y_test,
     classifier_model = output_path + alg + "_model.sav"
     pickle.dump(model, open(classifier_model, 'wb'))
 
-    #output_columns = 
-
     if clf_type == 'optimized':
         output_file.write("\nOptimizing Tuple: " + str(optimizing_tuple))
         output_file.write("\nOptimization Time: " + str(optimization_time))
