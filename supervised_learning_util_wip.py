@@ -58,7 +58,7 @@ class dataset():
     def load_data(self):
         temp_df = pd.DataFrame()
         for file in self.data_sources:
-            data = pd.read_csv(file, index_col=0)
+            data = pd.read_csv(file)
             temp_df = pd.concat([temp_df, data], ignore_index=True)
 
         temp_df = pd.DataFrame(sk.utils.shuffle(temp_df))
@@ -219,7 +219,7 @@ class learning():
         return model
 
 def main():
-    
+    '''
     ### run on binary data
     data = dataset()
     data.select_data()
@@ -231,12 +231,13 @@ def main():
     
     learning_obj = learning(data, 'optimized', ['hgbc',  'ada', 'qda', 'lda'])
     learning_obj.supervised_learning()
-
+'''
     ### run on multiclass data  
 
     data = dataset()
     data.select_data()
     data.load_data()
+    print(data.complete_data)
     data.split_data(.2)
     data.downsize_data()
     learning_obj = learning(data, 'plain', ['hgbc',  'qda', 'ridge', 'lda'])
