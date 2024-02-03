@@ -25,6 +25,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 class dataset():
     def __init__(self):
+        self.complete_data = pd.DataFrame()
         self.train_data = pd.DataFrame()
         self.train_labels = pd.DataFrame(columns=['label'])
         self.test_data = pd.DataFrame()
@@ -61,7 +62,9 @@ class dataset():
             temp_df = pd.concat([temp_df, data], ignore_index=True)
 
         temp_df = pd.DataFrame(sk.utils.shuffle(temp_df))
-        
+
+        self.complete_data = temp_df 
+
         if 'label' in data:
             self.train_data = pd.concat([self.train_data, temp_df.loc[:, temp_df.columns != 'label']], ignore_index=True)
             self.train_labels = pd.concat([self.train_labels, pd.DataFrame(temp_df['label'])], ignore_index=True) 
