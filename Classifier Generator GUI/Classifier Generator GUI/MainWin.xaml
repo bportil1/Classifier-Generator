@@ -1,0 +1,168 @@
+﻿<Page x:Class="Classifier_Generator_GUI.MainWin"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Classifier_Generator_GUI"
+      mc:Ignorable="d" 
+      
+      Title="Classifier Generator - Main"
+      Background="White">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <Style x:Key="MyBorderStyle" TargetType="Border">
+                <Setter Property="BorderBrush" Value="DarkGray" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="CornerRadius" Value="3" />
+            </Style>
+
+            <LinearGradientBrush x:Key="GrayBlueGradientBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="DarkGray" Offset="0" />
+
+                <GradientStop Color="DarkGray" Offset="1" />
+            </LinearGradientBrush>
+
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Background" Value="{StaticResource GrayBlueGradientBrush}"/>
+                <Setter Property="Width" Value="90" />
+                <Setter Property="Margin" Value="10" />
+            </Style>
+
+            <Style TargetType = "{x:Type DataGrid}">
+                <Setter Property="TextBlock.TextWrapping" Value="NoWrap"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Label FontSize="100" Margin="0,4,0,805" RenderTransformOrigin="0.5,0.5"
+               Background="darkBlue" Foreground="White" FontStyle="Italic" HorizontalAlignment="Center" Width="1392" Grid.Column="1">
+            Classifier Generator</Label>
+
+
+        <Rectangle Width="Auto" Fill="DarkBlue" Margin="4,806,0,8" Grid.ColumnSpan="2"/>
+
+        <Label FontSize="15" RenderTransformOrigin="0.5,0.5" Margin="885,185,385,733" Grid.Column="1">
+            Loaded Data
+        </Label>
+
+        <DataGrid x:Name="data_grid" ItemsSource="{Binding}"
+                 MaxWidth="5in" MaxHeight="5.6in"
+                 HorizontalScrollBarVisibility="Visible"
+                 VerticalScrollBarVisibility="Visible"
+                 AlternatingRowBackground="SkyBlue" 
+                 AlternationCount="2"  Grid.Column="1" Margin="0,196,27,154"
+                 HorizontalAlignment="Right"
+                 Width="508" IsReadOnly="True" />
+
+
+        <Button Name="select_data" BorderBrush="Black" BorderThickness="2"
+                Click="dataSelectButton"  RenderTransformOrigin="0.5,0.5" Margin="0,186,868,697" Grid.Column="1" HorizontalAlignment="Right" Width="90">
+            Select Data
+        </Button>
+
+        <Button Name="process_data" BorderBrush="Black" BorderThickness="2"
+                Click="dataProcessingButton"  RenderTransformOrigin="0.5,0.5" Margin="432,288,870,594" Grid.Column="1">
+            Process Data
+        </Button>
+
+        <Button Name="optimized_summary_win" BorderBrush="Black" BorderThickness="2"
+                Click="optSummWin"  RenderTransformOrigin="0.5,0.5" Margin="0,288,656,594" HorizontalAlignment="Right" Width="180" Grid.Column="1">
+            Optimized Attributes Summary
+        </Button>
+
+        <Button Name="plain_summary_win" BorderBrush="Black" BorderThickness="2"
+                Click="plainSummWin" RenderTransformOrigin="-0.808,0.549" Margin="0,186,656,697" HorizontalAlignment="Right" Width="180" Grid.Column="1">
+            Plain Attributes Summary
+        </Button>
+
+        <Label Name="data_split_label" FontSize="12" RenderTransformOrigin="0.5,0.5" Margin="15,320,1212,583" Grid.ColumnSpan="2">
+            Data Split Size
+        </Label>
+
+        <Slider x:Name="data_split_size"
+                Minimum ="1" Maximum ="99" Margin="30,362,0,551"  
+                AutoToolTipPlacement="TopLeft" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="220"/>
+
+        <CheckBox x:Name="plain_select" Content="Plain" 
+                  Checked="PlainCheck" Unchecked="PlainUncheck"
+                  Margin="0,382,1013,543" Grid.Column="1" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="80">
+        </CheckBox>
+
+        <CheckBox x:Name="opt_select" Content="Optimized" 
+                  Checked="OptCheck" Unchecked="OptUncheck" 
+                  Margin="300,351,0,567" Grid.Column="1" HorizontalAlignment="Left" Width="100"/>
+
+        <Label Name="data_path" MaxWidth="1.5in" FontSize="15" Margin="45,228,1157,697" Grid.Column="1">
+            Current Datapath
+        </Label>
+
+        <Label FontSize="15" RenderTransformOrigin="0.5,0.5" Margin="0,458,1160,460" Grid.Column="1" HorizontalAlignment="Right" >
+            Binary Classification Algorithms
+        </Label>
+
+        <Label FontSize="15" RenderTransformOrigin="0.5,0.5" Margin="276,458,818,460" Grid.Column="1">
+            Multiclass Classification Algorithms
+        </Label>
+
+        <ListBox Name="bin_classif_set" Margin="12,495,0,248" 
+                 SelectionMode="Single" Grid.Column="1" HorizontalAlignment="Left" Width="264" >
+            <Grid>
+                <ScrollViewer MaxHeight="2in" VerticalScrollBarVisibility="Visible">
+                    <ItemsControl Name="bItems">
+                        <CheckBox Name="rf" Content="Random Forest" />
+                        <CheckBox Name="hgbc" Content="Histogram Gradient Boosting Classifier" />
+                        <CheckBox Name="ada" Content="AdaBoost" />
+                        <CheckBox Name="qda" Content="Quadratic Discriminant Analysis" />
+                        <CheckBox Name="lda" Content="Linear Discriminant Analysis" />
+                        <CheckBox Name="mlp" Content="Multilayer Perceptron" />
+                        <CheckBox Name="ridge" Content="Ridge" />
+                        <CheckBox Name="pa" Content="Passive Aggressive" />
+                        <CheckBox Name="sgd" Content="SGD" />
+                        <CheckBox Name="etc" Content="Extra Trees Classifier" />
+                        <CheckBox Name="gnb" Content="Gaussian Naive Bayes" />
+                        <CheckBox Name="mnb" Content="Multinomial Naive Bayes" />
+                        <CheckBox Name="knn" Content="K-Nearest Neighbors" />
+                        <CheckBox Name="svc" Content="SVC" />
+                        <CheckBox Name="lsvc" Content="Linear SVC" />
+                        <CheckBox Name="gp" Content="Gaussian Processes" />
+                        <CheckBox Name="dt" Content="Decision Tree" />
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+        </ListBox>
+
+        <ListBox Name="multi_classif_set" Margin="276,495,0,248" 
+                 SelectionMode="Single" Grid.Column="1" HorizontalAlignment="Left" Width="248">
+            <Grid>
+                <ScrollViewer MaxHeight="2in" VerticalScrollBarVisibility="Visible">
+                    <ItemsControl Name="mItems">
+                        <CheckBox Name="rf2"  Content="Random Forest" />
+                        <CheckBox Name="hgbc2" Content="Histogram Gradient Boosting Classifier" />
+                        <CheckBox Name="qda2" Content="Quadratic Discriminant Analysis" />
+                        <CheckBox Name="lda2" Content="Linear Discriminant Analysis" />
+                        <CheckBox Name="mlp2" Content="Multilayer Perceptron" />
+                        <CheckBox Name="ridge2" Content="Ridge" />
+                        <CheckBox Name="gnb2" Content="Gaussian Naive Bayes" />
+                        <CheckBox Name="knn2" Content="K-Nearest Neighbors" />
+                        <CheckBox Name="lsvc2" Content="Linear SVC" />
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+        </ListBox>
+
+    </Grid>
+</Page>

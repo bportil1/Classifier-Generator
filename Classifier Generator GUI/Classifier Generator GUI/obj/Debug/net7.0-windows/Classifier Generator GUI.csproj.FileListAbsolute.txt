@@ -1,0 +1,36 @@
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\App.g.cs
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\Classifier Generator GUI_MarkupCompile.cache
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\bin\Debug\net7.0-windows\Classifier Generator GUI.exe
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\bin\Debug\net7.0-windows\Classifier Generator GUI.deps.json
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\bin\Debug\net7.0-windows\Classifier Generator GUI.runtimeconfig.json
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\bin\Debug\net7.0-windows\Classifier Generator GUI.dll
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\bin\Debug\net7.0-windows\Classifier Generator GUI.pdb
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\MainWindow.g.cs
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\Classifier Generator GUI_MarkupCompile.lref
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\MainWindow.baml
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\Classifier Generator GUI.g.resources
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\Classifier Generator GUI.GeneratedMSBuildEditorConfig.editorconfig
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\Classifier Generator GUI.AssemblyInfoInputs.cache
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\Classifier Generator GUI.AssemblyInfo.cs
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\Classifier Generator GUI.csproj.CoreCompileInputs.cache
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\Classifier Generator GUI.sourcelink.json
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\Classifier Generator GUI.dll
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\refint\Classifier Generator GUI.dll
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\Classifier Generator GUI.pdb
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\Classifier Generator GUI.genruntimeconfig.cache
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\ref\Classifier Generator GUI.dll
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\Classifier Generator GUI_Content.g.cs
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\OptSumm.g.cs
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\PlainSumm.g.cs
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\MainWin.g.cs
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\MainWin.baml
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\OptSumm.baml
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\PlainSumm.baml
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\bin\Debug\net7.0-windows\Python.Runtime.dll
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\Classifier Generator GUI.csproj.AssemblyReference.cache
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\Classifier Generator GUI.csproj.CopyComplete
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\bin\Debug\net7.0-windows\Classifier-Generator.dll
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\bin\Debug\net7.0-windows\Classifier-Generator.pdb
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\bin\Debug\net7.0-windows\Apache.Arrow.dll
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\bin\Debug\net7.0-windows\Microsoft.Data.Analysis.dll
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\bin\Debug\net7.0-windows\Microsoft.ML.DataView.dll

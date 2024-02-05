@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "dgSpecHash": "GAxG6k8ETDTxzWQObhDyl8dS7HCsqbpm46TLmZ3hMc6l/v3JQM17lGbTb2RZZnunYpwGnsaSrsI51M7+1CYuRQ==",
+  "success": true,
+  "projectFilePath": "E:\\vsprojects\\classifierGenerator\\Classifier Generator GUI\\Classifier Generator GUI\\Classifier Generator GUI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Karkaras\\.nuget\\packages\\apache.arrow\\11.0.0\\apache.arrow.11.0.0.nupkg.sha512",
+    "C:\\Users\\Karkaras\\.nuget\\packages\\microsoft.data.analysis\\0.21.1\\microsoft.data.analysis.0.21.1.nupkg.sha512",
+    "C:\\Users\\Karkaras\\.nuget\\packages\\microsoft.ml.dataview\\3.0.1\\microsoft.ml.dataview.3.0.1.nupkg.sha512",
+    "C:\\Users\\Karkaras\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
+    "C:\\Users\\Karkaras\\.nuget\\packages\\system.collections.immutable\\1.5.0\\system.collections.immutable.1.5.0.nupkg.sha512",
+    "C:\\Users\\Karkaras\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
+    "C:\\Users\\Karkaras\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\Karkaras\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.15\\microsoft.windowsdesktop.app.ref.7.0.15.nupkg.sha512",
+    "C:\\Users\\Karkaras\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.15\\microsoft.netcore.app.ref.7.0.15.nupkg.sha512",
+    "C:\\Users\\Karkaras\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.15\\microsoft.aspnetcore.app.ref.7.0.15.nupkg.sha512",
+    "C:\\Users\\Karkaras\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.15\\microsoft.netcore.app.host.win-x64.7.0.15.nupkg.sha512"
+  ],
+  "logs": []
+}

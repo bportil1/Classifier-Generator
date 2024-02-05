@@ -1,0 +1,20 @@
+﻿Classifier Generator GUI
+
+
+winexe
+C#
+.cs
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\obj\Debug\net7.0-windows\
+Classifier_Generator_GUI
+none
+false
+TRACE;DEBUG;NET;NET7_0;NETCOREAPP
+E:\vsprojects\classifierGenerator\Classifier Generator GUI\Classifier Generator GUI\App.xaml
+4249843586
+1-1957739451
+91281543856
+203-1889214432
+MainWin.xaml;MainWindow.xaml;OptSumm.xaml;PlainSumm.xaml;
+
+False
+
