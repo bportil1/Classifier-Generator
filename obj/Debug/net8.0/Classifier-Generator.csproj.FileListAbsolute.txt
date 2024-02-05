@@ -1,0 +1,15 @@
+E:\vscodeprojs\Classifier-Generator\bin\Debug\net8.0\Classifier-Generator.exe
+E:\vscodeprojs\Classifier-Generator\bin\Debug\net8.0\Classifier-Generator.deps.json
+E:\vscodeprojs\Classifier-Generator\bin\Debug\net8.0\Classifier-Generator.runtimeconfig.json
+E:\vscodeprojs\Classifier-Generator\bin\Debug\net8.0\Classifier-Generator.dll
+E:\vscodeprojs\Classifier-Generator\bin\Debug\net8.0\Classifier-Generator.pdb
+E:\vscodeprojs\Classifier-Generator\obj\Debug\net8.0\Classifier-Generator.GeneratedMSBuildEditorConfig.editorconfig
+E:\vscodeprojs\Classifier-Generator\obj\Debug\net8.0\Classifier-Generator.AssemblyInfoInputs.cache
+E:\vscodeprojs\Classifier-Generator\obj\Debug\net8.0\Classifier-Generator.AssemblyInfo.cs
+E:\vscodeprojs\Classifier-Generator\obj\Debug\net8.0\Classifier-Generator.csproj.CoreCompileInputs.cache
+E:\vscodeprojs\Classifier-Generator\obj\Debug\net8.0\Classifier-Generator.sourcelink.json
+E:\vscodeprojs\Classifier-Generator\obj\Debug\net8.0\Classifier-Generator.dll
+E:\vscodeprojs\Classifier-Generator\obj\Debug\net8.0\refint\Classifier-Generator.dll
+E:\vscodeprojs\Classifier-Generator\obj\Debug\net8.0\Classifier-Generator.pdb
+E:\vscodeprojs\Classifier-Generator\obj\Debug\net8.0\Classifier-Generator.genruntimeconfig.cache
+E:\vscodeprojs\Classifier-Generator\obj\Debug\net8.0\ref\Classifier-Generator.dll
